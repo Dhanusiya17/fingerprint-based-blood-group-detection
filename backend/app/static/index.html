@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Fingerprint Blood Group Detection</title>
+	<link rel="stylesheet" href="/styles.css" />
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	<header>
+		<h1>Fingerprint Blood Group Detection</h1>
+	</header>
+
+	<main>
+		<section id="info">
+			<h2>Info</h2>
+			<div class="row">
+				<div>
+					<h3>Available Models</h3>
+					<pre id="models"></pre>
+				</div>
+				<div>
+					<h3>Classes</h3>
+					<pre id="classes"></pre>
+				</div>
+				<div>
+					<h3>Config</h3>
+					<pre id="config"></pre>
+				</div>
+			</div>
+		</section>
+
+		<section id="predict-section">
+			<h2>Predict Blood Group</h2>
+			<form id="predict-form">
+				<input type="file" id="predict-file" accept="image/*" required />
+				<button type="submit">Predict</button>
+			</form>
+			<div class="row">
+				<div>
+					<h3>Preview</h3>
+					<img id="preview" alt="Preview" />
+				</div>
+				<div>
+					<h3>Result</h3>
+					<pre id="predict-result"></pre>
+				</div>
+			</div>
+		</section>
+
+		<section id="train-section">
+			<h2>Train a Model</h2>
+			<form id="train-form">
+				<label>Model:
+					<select id="train-model">
+						<option value="resnet50">ResNet50</option>
+						<option value="vgg16">VGG16</option>
+						<option value="mobilenet_v2">MobileNetV2</option>
+						<option value="lenet">LeNet</option>
+					</select>
+				</label>
+				<button type="submit">Start Training</button>
+			</form>
+			<pre id="train-result"></pre>
+		</section>
+
+		<section id="runs-section">
+			<h2>Training Runs</h2>
+			<div class="row">
+				<div>
+					<ul id="runs-list"></ul>
+				</div>
+				<div class="charts">
+					<canvas id="accChart" width="400" height="200"></canvas>
+					<canvas id="lossChart" width="400" height="200"></canvas>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<p>API powered by FastAPI</p>
+	</footer>
+
+	<script src="/app.js"></script>
+</body>
+</html>

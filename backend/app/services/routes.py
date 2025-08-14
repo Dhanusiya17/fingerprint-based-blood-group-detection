@@ -34,6 +34,27 @@ async def get_config():
 	}
 
 
+@router.get("/runs")
+async def list_runs():
+	root = settings.models_dir
+	root.mkdir(parents=True, exist_ok=True)
+	runs = []
+	for p in root.iterdir():
+		if p.is_dir():
+			runs.append({"name": p.name, "mtime": p.stat().st_mtime})
+	runs = sorted(runs, key=lambda r: r["mtime"], reverse=True)
+	return {"runs": runs}
+
+
+@router.get("/runs/{run_name}/history")
+async def get_run_history(run_name: str):
+	path = settings.models_dir / run_name / "history.json"
+	if not path.exists():
+		raise HTTPException(status_code=404, detail="history not found")
+	import json
+	return {"history": json.loads(path.read_text())}
+
+
 @router.post("/train", response_model=TrainResponse)
 async def train(model: str = Query("resnet50", enum=["resnet50", "vgg16", "mobilenet_v2", "lenet"])):
 	# Lazy import to avoid heavy deps during app startup
