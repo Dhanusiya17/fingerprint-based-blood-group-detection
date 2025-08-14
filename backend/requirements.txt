@@ -1,0 +1,12 @@
+fastapi>=0.104
+uvicorn[standard]>=0.24
+pydantic>=2.4
+# Prefer tensorflow-cpu; install in Docker or appropriate Python version
+# tensorflow==2.10.1
+# or: tensorflow-cpu==2.10.1
+numpy
+pandas
+scikit-learn
+matplotlib
+seaborn
+glob2

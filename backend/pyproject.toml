@@ -1,0 +1,23 @@
+[project]
+name = "fingerprint-bloodgroup-backend"
+version = "0.1.0"
+description = "FastAPI backend for Fingerprint Blood Group Detection"
+authors = [{name="Your Name"}]
+requires-python = ">=3.8"
+dependencies = [
+	"fastapi>=0.95,<1.0",
+	"uvicorn[standard]>=0.20",
+	"tensorflow==2.4.1",
+	"numpy==1.19.5",
+	"pandas==1.2.4",
+	"scikit-learn==0.24.2",
+	"matplotlib==3.4.2",
+	"seaborn==0.11.1",
+	"glob2",
+]
+
+[tool.uvicorn]
+app = "app.main:app"
+host = "0.0.0.0"
+port = 8000
+reload = true
